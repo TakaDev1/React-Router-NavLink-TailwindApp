@@ -1,32 +1,93 @@
-# React + TypeScript + Vite
+# React-Router-NestedRoutingApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React Routerの`NavLink`と`isActive`を使用して、現在表示しているページのナビゲーションを切り替える練習用アプリです。
 
-Currently, two official plugins are available:
+## 概要
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+現在表示しているページのナビゲーションを青色＋太字にし、それ以外のナビゲーションをグレーで表示します。
 
-## React Compiler
+## 学習内容
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* `NavLink`の基本的な使い方
+* `isActive`によるアクティブ状態の判定
+* Tailwind CSSによる条件付きスタイリング
+* ナビゲーションのアクティブ状態の表示
 
-## Expanding the Oxlint configuration
+## 使用技術
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+* React
+* TypeScript
+* React Router
+* Tailwind CSS
+* Vite
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## ルーティング
+
+| URL         | ページ      |
+| ----------- | -------- |
+| `/`         | Home     |
+| `/profile`  | Profile  |
+| `/settings` | Settings |
+
+## アクティブ状態
+
+現在表示しているページの`NavLink`には以下のクラスを適用します。
+
+```text
+text-blue-500
+font-bold
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## 非アクティブ状態
+
+現在表示していないページの`NavLink`には以下のクラスを適用します。
+
+```text
+text-gray-500
+```
+
+## 実装例
+
+```tsx
+<NavLink
+  to="/profile"
+  className={({ isActive }) =>
+    isActive
+      ? "text-blue-500 font-bold"
+      : "text-gray-500"
+  }
+>
+  Profile
+</NavLink>
+```
+
+`isActive`が`true`の場合はアクティブ状態、`false`の場合は非アクティブ状態としてスタイルを切り替えます。
+
+## ディレクトリ構成
+
+```text
+src/
+├── components/
+│   └── Navigation.tsx
+├── pages/
+│   ├── Home.tsx
+│   ├── Profile.tsx
+│   └── Settings.tsx
+├── App.tsx
+├── App.css
+└── main.tsx
+```
+
+## 起動方法
+
+```bash
+npm install
+```
+
+```bash
+npm run dev
+```
+
+## まとめ
+
+`NavLink`の`isActive`を使用することで、現在表示しているページのナビゲーションだけスタイルを変更できます。
