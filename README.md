@@ -1,4 +1,4 @@
-# React-Router-NestedRoutingApp
+# React-Router-NavLink-TailwindApp
 
 React Routerの`NavLink`と`isActive`を使用して、現在表示しているページのナビゲーションを切り替える練習用アプリです。
 
